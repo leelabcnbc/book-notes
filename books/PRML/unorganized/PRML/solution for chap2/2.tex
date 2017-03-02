@@ -1,0 +1,188 @@
+%!TEX program = xelatex
+%!TEX encoding = UTF-8 412-268-2097Unicode
+
+\documentclass[12pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Will Robertson's fontspec.sty can be used to simplify font choices.
+% To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
+% and change "Hoefler Text" to any of these choices.
+
+\usepackage{fontspec,xltxtra,xunicode}
+
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+\title{Brief Article}
+\author{The Author}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+% For many users, the previous commands will be enough.
+% If you want to directly input Unicode, add an Input Menu or Keyboard to the menu bar 
+% using the International Panel in System Preferences.
+% Unicode must be typeset using a font containing the appropriate characters.
+% Remove the comment signs below for examples.
+
+% \newfontfamily{\A}{Geeza Pro}
+% \newfontfamily{\H}[Scale=0.9]{Lucida Grande}
+% \newfontfamily{\J}[Scale=0.85]{Osaka}
+
+% Here are some multilingual Unicode fonts: this is Arabic text: {\A السلام عليكم}, this is Hebrew: {\H שלום}, 
+% and here's some Japanese: {\J 今日は}.
+
+\section{2.1}
+Trivial.
+
+\section{2.2}
+Trivial.
+
+\section{2.3}
+The proof of (2.262) is trivial.
+
+Proof of (2.263) (binomial theorem): The case of $N=1$ is trivial. The induction step is also easy, as long as you have patience.
+
+The proof of (2.264) is trivial.
+
+\section{2.4}
+By rearranging the result of differentiation, we have
+\begin{equation}
+    \frac{1}{1-\mu} \mathrm{E}(x)=\frac{1}{1-\mu} N.
+\end{equation}
+Then everything is trivial.
+
+The proof of variation: skip...
+
+\section{2.5}
+Too hard for me... see the manual... too many techniques in calculus...
+
+
+\section{2.6}
+(2.267): make use of $\Gamma(x+1) = x \Gamma(x)$.
+(2.268): first calculate $E(\mu^2)$, then we are done.
+(2.269): trivial...
+
+Hint: as long as you prove the normalization, everything else becomes easy.
+
+\section{2.7}
+Trivial... why 2 stars...
+
+\section{2.8}
+(2.270): trivial.
+(2.271): see the manual... 
+
+Hint: sometimes, symbol manipulation is powerful.
+
+\section{2.9}
+See the manual... too hard... but I should understand the upper and lower limits of integrand better. Here, $\mu_1,\ldots,\mu_{M-2}$ are constants. The upper and lower limits of $\mu_{M-1}$ is a function of these $M-2$ values.
+
+\section{2.10}
+(2.273): trivial.
+(2.274): trivial.
+(2.275): trivial. There's a similar shortcut of covariance like variance.
+
+\section{2.11}
+Since $\mu_j^{\alpha_j -1}$ can be expressed as $\exp((\alpha_j-1) \ln\mu_j)$, we have
+\begin{align}
+    \frac{\partial}{\partial \alpha_j}\prod_{k=1}^{M} \mu_k^{\alpha_k-1} & = \frac{\partial}{\partial \alpha_j}\prod_{k=1}^{M} \exp((\alpha_k-1)\ln\mu_k) \\
+    & = \frac{\partial}{\partial \alpha_j} \exp((\alpha_j-1) \ln\mu_j)  \prod_{k=1,k \neq j}^{M} \mu_k^{\alpha_k-1} \\
+    & = \ln \mu_j \exp((\alpha_j-1) \ln\mu_j)  \prod_{k=1,k\neq j}^{M} \mu_k^{\alpha_k-1} \\
+    & = \ln \mu_j \prod_{k=1}^{M} \mu_k^{\alpha_k - 1}
+\end{align}
+
+For the rest, see the manual...
+
+Hint: if you see fraction $a/b$, try to fit them in a form containing $\ln(b/a)$; if you see something $-a$, you can fit it in a form containing $\ln(a^{-1})$. If you see addition in something related to log, you should think about multiplication, and vise versa; if you see subtraction, you should think about division!
+
+\section{2.12}
+Normalized: trivial.
+Mean: $(a+b)/2$; trivial.
+Variance: $(b-a)^2/12$; trivial.
+
+\section{2.13}
+See the manual and refer to matrix cookbook... I think the trace trick is very useful...
+
+I think the most important thing is... See the sum of entry-wise products of elements about 2 matrices as a trace... Consider quadratic form $\vect{x}^T A \vect{x}$, we can consider it as the sum of entry-wise products of elements about $A$ and $\vect{x} \vect{x}^T$.
+
+Proof of cyclicity of trace: $\mathrm{Tr}(ABC)=\mathrm{Tr}(A(BC))=\mathrm{Tr}((BC)A)=\mathrm{Tr}(BCA)=\mathrm{Tr}(CAB)$. (cyclicity for 2 is trivial)
+
+
+
+\section{2.14}
+Skip... I really don't know variation calculus...
+
+\section{2.15}
+\begin{align}
+    \mathrm{H}(\vect{x} ) &= -\int \mathcal{N}(\vect{x}|\boldsymbol{\mu}, \boldsymbol{\Sigma}) \ln\frac{1}{(2\pi)^{D/2}} \frac{1}{|\boldsymbol{\Sigma}|^{1/2}} \exp\left\{-\frac{1}{2}(\vect{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\vect{x} - \boldsymbol{\mu}) \right\}  \\
+    &=\int \mathcal{N}(\vect{x}|\boldsymbol{\mu}, \boldsymbol{\Sigma}) 
+    (\frac{D}{2}  \ln (2\pi)+\frac{1}{2}\ln|\boldsymbol{\Sigma}| + \frac{1}{2}(\vect{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\vect{x} - \boldsymbol{\mu}))\\
+    &=\frac{D}{2}  \ln (2\pi) + \frac{1}{2}\ln|\boldsymbol{\Sigma}| + 
+    \frac{1}{2}\int \mathcal{N}(\vect{x}|\boldsymbol{\mu}, \boldsymbol{\Sigma})\mathrm{Tr}(\boldsymbol{\Sigma}^{-1}  \left[    (\vect{x} - \boldsymbol{\mu})  (\vect{x} - \boldsymbol{\mu})^T     \right] )\\
+    &=\frac{D}{2}  \ln (2\pi) + \frac{1}{2}\ln|\boldsymbol{\Sigma}| +
+    \frac{1}{2} \mathrm{Tr}(\boldsymbol{\Sigma}^{-1} \boldsymbol{\Sigma} ) \\
+    &=\frac{D}{2}  \ln (2\pi) + \frac{1}{2}\ln|\boldsymbol{\Sigma}| + \frac{D}{2}
+\end{align} 
+The conversion from quadratic form to a trace representation is the most important thing. See the hint in 2.14. Also, we exchange the order of integration, and the multiplication of two matricies in the trace operator, which is correct.
+
+\section{2.16}
+\begin{align}
+    p(x) &= \int p_1(x-x_2) p_2(x_2) \mathrm{d} x_2 \\
+    & = \int N(x - x_2|\mu_1, \tau_1^{-1}) N(x_2|, \mu_2, \tau_2^{-1}) \mathrm{d} x_2 \\
+    & = \int N(x|\mu_1+x_2, \tau_1^{-1}) N(x_2|, \mu_2, \tau_2^{-1}) \mathrm{d} x_2
+\end{align}
+Using equation (2.115), we have $p(x)$ has a variance of $1/\tau_1 + 1/\tau_2$. So $\mathrm{H}(x) = \ln(2\pi (\tau_1+\tau_2)/(\tau_1\tau_2)) $.
+
+
+\section{2.17}
+Trivial... And we have to note that the determinant of the covariance matrix just works as part of the normalization constant. What really matters in the thing in the exponent.
+
+
+\section{2.18}
+Given the definition of eigenvalue, we have
+\begin{equation}
+    \Sigma \vect{u}_i = \lambda_i \vect{u}_i.
+\end{equation}
+Next we have some transformations...
+\begin{align}
+    \Sigma \vect{u}^*_i &= \lambda^*_i \vect{u}^*_i\quad \text{taking complex conjugate} \label{eq:conju} \\
+    (\vect{u}^*)^T_i \Sigma \vect{u}_i & = \lambda_i (\vect{u}^*_i)^T \vect{u}_i \quad \text{(left multiply $(\vect{u}^*)^T_i$)} \label{eq:conju2} \\
+    \vect{u}^T_i \Sigma \vect{u}^*_i &= \lambda^*_i \vect{u}^T_i \vect{u}^*_i \quad \text{left multiply (\ref{eq:conju})}\\
+    \vect{u}^T_i \Sigma \vect{u}^*_i &= \lambda_i \vect{u}^T_i \vect{u}^*_i \quad \text{transpose of \ref{eq:conju2}}\\
+    \lambda^*_i \vect{u}^T_i \vect{u}^*_i & = \lambda_i \vect{u}^T_i \vect{u}^*_i \quad\text{right sides of above two equations} \\
+    \lambda^*_i &= \lambda_i \quad\text{norm of a eigenvector is non-zero}
+\end{align}
+
+For the orthogonality, see the manual. The last question is trivial. Since we can always construct an orthonormal basis.
+
+\section{2.19}
+Trivial...
+
+\section{2.20}
+Trivial...
+
+\section{2.21}
+Trivial...
+
+\section{2.22}
+Let $A A^{-1} = I$. Because $A$ is symmetric, we have $A^T A^{-1}= I$. Thus, $A^{-1} = (A^T)^{-1} = (A^{-1})^T $.
+
+\section{2.60}
+Just see the manual...
+
+\section{2.61}
+See the manual... Here, it considers the points that are very far from every sample points we observed, so that the radius of the $V$ can be practically seen as the distance from the point to the origin... What's more, some variable transformation in integration is used.
+
+
+\end{document}  

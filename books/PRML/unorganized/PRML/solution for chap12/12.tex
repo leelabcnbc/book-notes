@@ -1,0 +1,204 @@
+%!TEX program = xelatex
+%!TEX encoding = UTF-8 412-268-2097Unicode
+
+\documentclass[12pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Will Robertson's fontspec.sty can be used to simplify font choices.
+% To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
+% and change "Hoefler Text" to any of these choices.
+
+\usepackage{fontspec,xltxtra,xunicode}
+
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+\title{Brief Article}
+\author{The Author}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+% For many users, the previous commands will be enough.
+% If you want to directly input Unicode, add an Input Menu or Keyboard to the menu bar 
+% using the International Panel in System Preferences.
+% Unicode must be typeset using a font containing the appropriate characters.
+% Remove the comment signs below for examples.
+
+% \newfontfamily{\A}{Geeza Pro}
+% \newfontfamily{\H}[Scale=0.9]{Lucida Grande}
+% \newfontfamily{\J}[Scale=0.85]{Osaka}
+
+% Here are some multilingual Unicode fonts: this is Arabic text: {\A السلام عليكم}, this is Hebrew: {\H שלום}, 
+% and here's some Japanese: {\J 今日は}.
+
+
+\section{12.1} % (fold)
+\label{sec:12_1}
+
+See the reference manual. It's conventional convex optimization. Note that we know $\eta_j = 0$ because $\vect{u}_i, i = 1,\ldots,M$ are linearly independent.
+
+% section 12_1 (end)
+\section{12.2} % (fold)
+\label{sec:12_2}
+In (12.93), the second term is just the sum of all Lagrangian terms. we have $(D-M)(D-M)$ constraints, for every pair of vectors (maybe somewhat redundant, but it's still fine), and we have $(D-M)(D-M)$ Lagrangian terms in $H$. Look at the solution manual. Note that if there exists a $H$ that minimizes this equation, we can always set it to be a symmetric one. (Note that $I- \hat{U}^T \hat{U}$ is symmetric, just as $x_i x_j = x_j x_i$ in Problem 1.14).
+
+The derivation in the reference manual just says that 1) $H=L$, where $L$ is a diagonal matrix having all eigenvalues of $S$ is OK, but 2) if we allow $H$ to be a symmetric matrix, then to satisfy the equation, the eigenvalues of $H$ must be $L$ (eigenvalues of $S$), and any transformation $\Psi$ will be equally good. 
+
+Note that by solving $H$ and $\hat{U}$, we only get stationary points. Any $D-M$ eigenvalues of $S$ will do, or, any rotation of $D-M$ eigenvectors will do. 
+
+Basically, we can rotate freely in the remaining $D-M$ dimensions, and I think we can certainly do so in the first $M$ dimensions, as long as orthogonality is preserved.
+
+% section 12_2 (end)
+
+\section{12.3} % (fold)
+\label{sec:12_3}
+Trivial. Just pre-multiply (12.30) by $\vect{u}_i^T$.
+% section 12_3 (end)
+
+\section{12.4} % (fold)
+\label{sec:12_4}
+Trivial. The first equation in solution manual is wrong. $\Sigma^{-1}$ should be $\Sigma$.
+% section 12_4 (end)
+
+\section{12.5} % (fold)
+\label{sec:12_5}
+Well, just look at the solution manual. I don't know some of the solutions. But generally speaking, I think singular distributions are not useful, and they can be approximated by giving a very small covariance matrix, without any difference in practice.
+% section 12_5 (end)
+
+\section{12.6} % (fold)
+\label{sec:12_6}
+Trivial.
+% section 12_6 (end)
+
+\section{12.7} % (fold)
+\label{sec:12_7}
+Trivial.
+
+% section 12_7 (end)
+
+\section{12.8} % (fold)
+\label{sec:12_8}
+Trivial, just by rote.
+% section 12_8 (end)
+
+\section{12.9} % (fold)
+\label{sec:12_9}
+Should be trivial.
+% section 12_9 (end)
+
+\section{12.10} % (fold)
+\label{sec:12_10}
+Trivial, using properties of convex / concave.
+% section 12_10 (end)
+
+\section{12.11} % (fold)
+\label{sec:12_11}
+By doing SVD on $W$, we are done. I don't like solution in the manual much. Actually, that solution tells us, if the rotation matrix is identity matrix, then mean of $z$ is the whitened projection in PCA. I like Byron Yu's $\tilde{\vect{z}}$ in his notes. By plugging in the general solution for $W$ (12.45), I can show that $\tilde{\vect{z}}$ is the projection made by conventional PCA.
+
+% section 12_11 (end)
+
+\section{12.12} % (fold)
+\label{sec:12_12}
+Don't understand what's in solution manual. I want to derive Byron's result myself.
+
+Using (12.45), (12.48), and formula for $\tilde{\vect{z}}$, we have
+
+\begin{align}
+\tilde{\vect{z}} & = (L-\sigma^2 I)^{1/2} R E(\vect{z}\mid \vect{x}) \\
+                 & = (L-\sigma^2 I)^{1/2} R M^{-1} W^T (\vect{x} - \overline{\vect{x}} ) \\
+                 & = (L-\sigma^2 I)^{1/2} R [   W^T W + \sigma^2 I    ]^{-1} W^T (\vect{x} - \overline{\vect{x}} ) \\
+                 & = (L-\sigma^2 I)^{1/2} R [ R^T (L-\sigma^2 I)^{1/2} U^T U (L-\sigma^2 I)^{1/2} R + \sigma^2 I ]^{-1} W^T (\vect{x} - \overline{\vect{x}} ) \\
+                 & = (L-\sigma^2 I)^{1/2} R L^{-1} W^T (\vect{x} - \overline{\vect{x}} ) \\
+                 & = (L-\sigma^2 I)^{1/2} R L^{-1} R^T (L-\sigma^2 I)^{1/2} U^T (\vect{x} - \overline{\vect{x}} )\\
+                 & =(I-\sigma^2 L^{-1}) U^T (\vect{x} - \overline{\vect{x}} ).
+\end{align}
+This is just what Byron showed in the notes.
+
+% section 12_12 (end)
+
+\section{12.13} % (fold)
+\label{sec:12_13}
+Trivial. Plug in (12.48) into the expression, and use (12.45). Well, this question is asking, given $W$ solved by PPCA, what's the best way to project that point to the space of $W$, so that square error is minimized... Well, it's just writing orthogonal projection in terms of $E(z|x)$!
+% section 12_13 (end)
+
+\section{12.14} % (fold)
+\label{sec:12_14}
+See the reference solution... This solution just says that the number of independent parameters match, but doesn't say if the solution spaces match.
+% section 12_14 (end)
+
+\section{12.18} % (fold)
+\label{sec:12_18}
+Easy to derive, but don't know why (why the rotation matrix in total subtracts $M(M-1)$ degrees of freedom) ...
+% section 12_18 (end)
+
+\section{12.19} % (fold)
+\label{sec:12_19}
+Trivial...
+% section 12_19 (end)
+
+\section{12.25} % (fold)
+\label{sec:12_25}
+Look at the reference manual. I like the first part on how to prove the transformation of ML solutions are new ML solutions: basically, you do some algebra to make the new log likelihood function have the same form of old ones.
+
+Well, I think the solution for first part is completely wrong. They should do the variable substitution as follows: $\mu_A = A^{-1}\mu, W_A = A^{-1}W$, and $\Psi_A = A^{-1} \Psi A$, so that everything takes the same form, except that everything has a subscript. But we need to remember, the end goal is to solve $\mu, W, \Psi$. we have $\mu_A = \mu_{ML} = A^{-1}\mu$, and get $\mu = A \mu_{ML}$. Similarly for others.
+
+% section 12_25 (end)
+
+\section{Kernel PCA (pp. 588 of book)} % (fold)
+\label{sec:kernel_pca_}
+
+I think the original paper of KPCA and the presentation here in the book is redundant, and not logically correct.
+
+I hate that $K^2 = K\alpha$ stuff.
+
+Well let's denote that 
+\begin{align}
+X &= \begin{bmatrix}
+    \phi(x_1)^T \\
+    \phi(x_2)^T \\
+    \ldots
+\end{bmatrix}\\
+K &= X X^T \\
+C &= \frac{1}{N} X^T X.
+\end{align}
+where $C$ being covariance matrix.
+
+First I show that $\frac{1}{N} K$ and $C$ have the same set of positive eigenvalues.
+
+\begin{align}
+  & C v_i = \lambda_i v_i\\
+\rightarrow & \frac{1}{N} X^T X v_i  = \lambda_i v_i\\
+\rightarrow & \frac{1}{N} X X^T X v_i  =  \lambda_i X v_i\\
+\rightarrow & \frac{1}{N} X X^T (X v_i)  =  \lambda_i (X v_i)\\
+\rightarrow & \frac{1}{N} K a_i  =  \lambda_i a_i
+\end{align}
+Notice that $a_i = X v_i$ must be non zero, otherwise $ X^T X v_i$ would be zero, and $ \lambda_i v_i$ be zero.
+
+What if we have duplicate positive eigenvalues? In that case, we can show that all $a_i = X v_i, a_i' = X v_i', a_i'' = X v_i'', \ldots$ are linear independent as well. (because $X^T a_i, X^T a_i', X^T a_i'', ...$ are independent. So $X^T (x_1 a_i + x_2 a' + x_3 a_i'') = 0 $ have only zero solution, so does $(x_1 a_i + x_2 a' + x_3 a_i'') = 0$ only when $x_1=x_2=x_3=0$, otherwise we have contradiction)
+
+We can prove the other direction by changing the role of $C$ and $\frac{1}{N} K$, so we have
+\begin{align}
+& \frac{1}{N} K a_i  =  \lambda_i a_i \\
+\rightarrow & C (X^T a_i) = \lambda_i (X^T a_i) \\
+\rightarrow & C v_i = \lambda_i v_i 
+\end{align}
+
+So we know that all solutions to (12.80) in the book correspond to some $v_i$ for (12.74), and we also established (12.76).
+
+So, since $a_i = X v_i$, for a existing data point, its projection to the KPCA space (upto some multiplication) can be read out directly by eigenvectors of $K$. Check \texttt{test\_KPCA.m} to see this!!! By the book, the projection should be $Ka$, which should be just some multiplication of $a$, since they are eigenvectors!
+
+% section kernel_pca_ (end)
+
+\end{document}  

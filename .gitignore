@@ -1,0 +1,4 @@
+# all jupyter cache
+.ipynb_checkpoints
+# PyCharm
+/.idea

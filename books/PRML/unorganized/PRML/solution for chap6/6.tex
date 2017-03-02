@@ -1,0 +1,55 @@
+%!TEX program = xelatex
+%!TEX encoding = UTF-8 412-268-2097Unicode
+
+\documentclass[12pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Will Robertson's fontspec.sty can be used to simplify font choices.
+% To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
+% and change "Hoefler Text" to any of these choices.
+
+\usepackage{fontspec,xltxtra,xunicode}
+
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+\title{Brief Article}
+\author{The Author}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+% For many users, the previous commands will be enough.
+% If you want to directly input Unicode, add an Input Menu or Keyboard to the menu bar 
+% using the International Panel in System Preferences.
+% Unicode must be typeset using a font containing the appropriate characters.
+% Remove the comment signs below for examples.
+
+% \newfontfamily{\A}{Geeza Pro}
+% \newfontfamily{\H}[Scale=0.9]{Lucida Grande}
+% \newfontfamily{\J}[Scale=0.85]{Osaka}
+
+% Here are some multilingual Unicode fonts: this is Arabic text: {\A السلام عليكم}, this is Hebrew: {\H שלום}, 
+% and here's some Japanese: {\J 今日は}.
+
+
+\section{6.1}
+Originally, we optimize $J(\vect{w})  = 1/2 (\vect{\Phi} \vect{w} - \vect{{t}})^T (\vect{\Phi} \vect{w} - \vect{\mathrm{t}})$. Now we set $\vect{w} = \vect{\Phi}^T \vect{a}$ (since the optimal $\vect{w}$ must take this form) and instead optimize $\vect{a}$. That is (6.7) in PRML pp. 293. The solution of (6.7) takes the form $K(K+\lambda I) \vect{a} = K \vect{t}$, and we can see the solution of $\vect{a}$ is $(K+\lambda I)^{-1}(t+N(K) \vect{\lambda})$. Every one of them is fine. We can split $\vect{a}$ into a part in  the span of $K$ and the other part in  the null space of $K$, and we can check that by only preserving the span part, $J(\vect{a}$ is the same. So we have $\vect{a} = vect{\Phi} \vect{u}$, and see the solution manual. Actually, I think it's useless to talk about the rank of matrix $\vect{\Phi}^T \vect{\Phi}$. The point is, if we have a solution to $\vect{alpha}$, we can use it to get a solution of $\vect{w} = \vect{\Phi}^T \vect{alpha} $.
+
+
+\section{6.2}
+Certain we can see that $\vect{w} = \sum_{n} a_n t_n \phi(\vect{x}_n ) $, where $a_i$ is the number of addition of this signed (normalized) sample. The learning rule is, whenever we classify $\phi(\vect{x}_n )$ wrongly, we make $a_n$ bigger by one. In prediciton, we use $\vect{w} = \vect{\Phi}^T \vect{\alpha}$ to get $\vect{w}^T \phi(\vect{x})= \vect{\alpha}^T \vect{\Phi}\phi(\vect{x}) $. Clearly the feature vector enters only in the form of the kernel function.
+
+
+\end{document}  
