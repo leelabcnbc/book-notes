@@ -1,6 +1,6 @@
-# machine-learning-notes
+# book-notes
 
-a bunch of notes about machine learning.
+a bunch of notes about machine learning, image statistics, theoretical neuroscience, etc.
 
 ## Versions of Books.
 
