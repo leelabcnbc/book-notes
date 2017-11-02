@@ -1,0 +1,40 @@
+We start from a factored distribution of latent variables s1,s2,…,sN, each with same distribution and same variance. We can assume that the covariance matrix starts from I.
+
+We can put in a mixing system B (square), and the new (observed) covariance matrix is now B^T B = U \Sigma U^T, where U \Sigma U^T is ONE eigen decomposition of original matrix.
+
+B is our mixing matrix.
+
+B^{-1} B^{-T} = (B^T B)^{-1} = U \Sigma^{-1} U^T
+
+V = U \Sigma^{-(1/2)}.
+
+E(x x^T) = B^T B.
+
+y = V^T x, % V is our whitening transformation, y is our whitened data.
+
+E(y y^T) = V^T x x^T V
+ = V^T B^T B V = \Sigma^{-(1/2)}   U^T    (U \Sigma U^T) U \Sigma^{-(1/2)} = I.
+
+z = R^T y
+
+E(z z^T) = R^T E(y y^T) R
+
+= R^T V^T x x^T (V R)
+
+
+V^{-1} = \Sigma^{(1/2)} U^T.
+V^{-T} = U * \Sigma^{(1/2)}
+
+Can we rotate (reflect) V to get a new thing M = V*R, so that M = B^{-1}, and we have M^T B^T B M = I, with the property that M exactly compensates B.
+
+V*R = B^{-1}
+
+R = V^{-1} B^{-1}. % this is the best R we want to find.
+
+R R^T = V^{-1} B^{-1} B^{-T} V^{-T} 
+ =   \Sigma^{(1/2)} U^T   [U \Sigma^{-1} U^T] U * \Sigma^{(1/2)} = I. 
+R^T is the inverse of R.
+R R^T = R^T R = I. % since the inverse matrix is for both left and right.
+
+
+So R is a orthogonal matrix.

@@ -1,0 +1,152 @@
+%!TEX program = xelatex
+%!TEX encoding = UTF-8 412-268-2097Unicode
+
+\documentclass[12pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Will Robertson's fontspec.sty can be used to simplify font choices.
+% To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
+% and change "Hoefler Text" to any of these choices.
+
+\usepackage{fontspec,xltxtra,xunicode}
+
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+\title{Solutions for Chapter 5 of \emph{Natural Image Statistics}}
+\author{Yimeng Zhang}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+% For many users, the previous commands will be enough.
+% If you want to directly input Unicode, add an Input Menu or Keyboard to the menu bar 
+% using the International Panel in System Preferences.
+% Unicode must be typeset using a font containing the appropriate characters.
+% Remove the comment signs below for examples.
+
+% \newfontfamily{\A}{Geeza Pro}
+% \newfontfamily{\H}[Scale=0.9]{Lucida Grande}
+% \newfontfamily{\J}[Scale=0.85]{Osaka}
+
+% Here are some multilingual Unicode fonts: this is Arabic text: {\A السلام عليكم}, this is Hebrew: {\H שלום}, 
+% and here's some Japanese: {\J 今日は}.
+
+
+\section{Mathematical Exercises} % (fold)
+\label{sec:mathematical_exercises}
+
+\subsection*{5.11.1} % (fold)
+\label{sub:5_11_1}
+
+Let $d_i$ denote the DC component for the $i$th image, $i=1,\ldots,N$. $m$ is number of pixels in an image.
+
+Then 
+\begin{align}
+d_i & =  \frac{1}{m} \sum_{x',y'} I_i(x',y'), \\
+E(d) & = \frac{1}{N} \sum_i \frac{1}{m} \sum_{x',y'} I_i(x',y') \\
+     & =  \frac{1}{N} \sum_{x',y'}  \frac{1}{m} \sum_i I_i(x',y') \\
+     & =  \frac{1}{m} \sum_{x',y'}  \frac{1}{N} \sum_i I_i(x',y') \\
+     & =  \frac{1}{m} \sum_{x',y'}  E_{xy} \\
+     &=  E_{xy},\\
+E[I(x,y) - d] & = E[I(x,y)] - E(d) \\
+              & = E_{xy} - E_{xy}\\
+              & = 0, \forall x,y
+\end{align}
+
+$E_{xy}$ is denotes $E[I(x,y)]$ that is contant for all $x,y$, as given by (5.52) in the book.
+
+Note: I think chapter 5 assumes (5.52) and DC-removal for all analyses in it.
+
+% subsection 5_11_1 (end)
+
+Another proof, here, I model DC component as a random variable $d$: mean of all pixels in a image of random pixels.
+
+\begin{align}
+d & =  \frac{1}{m} \sum_{x',y'} I_i(x',y'), \\
+E(d) & = E ( \sum_{x',y'} I_i(x',y') )\\
+     & = \frac{1}{m}  \sum_{x',y'} E (  I_i(x',y') ) \\
+     & = \frac{1}{m} \sum_{x',y'}  E_{xy} \\
+     &=  E_{xy},\\
+E[I(x,y) - d] & = E[I(x,y)] - E(d) \\
+              & = E_{xy} - E_{xy}\\
+              & = 0, \forall x,y
+\end{align}
+
+Since every feature $s$ is just a linear combination of $\tilde{I}(x,y)$, $E(s) = 0$
+
+\section*{5.11.2} % (fold)
+\label{sec:5_11_2}
+
+Following (5.2) in the book, after DC removal, we have
+
+\begin{align}
+s_i^*   &=  \sum_{x,y} W_i(x,y) [I(x,y) - d] \\
+        & = \sum_{x,y} W_i(x,y) I(x,y) - \sum_{x,y} W_i(x,y)  d \\
+        & = s_i - 0 \\
+        & = s_i.
+\end{align}
+$s_i^*$ is the new feature value.
+
+% section 5_11_2 (end)
+
+\section*{5.11.3} % (fold)
+\label{sec:5_11_3}
+Trivial.
+% section 5_11_3 (end)
+
+
+\section*{5.11.4} % (fold)
+\label{sec:5_11_4}
+(a) When $E(\vect{x}) = \vect{0}$.
+
+(b) Trivial. Linearity of expectation.
+% section 5_11_4 (end)
+
+
+\section*{5.11.5} % (fold)
+\label{sec:5_11_5}
+(a) 
+
+\begin{align}
+J(\vect{w})  & = E[    ( \vect{x}- z\vect{w} )^T  ( \vect{x}- z\vect{w} )] \\
+ & = E[ \vect{x}^T \vect{x} - 2z \vect{w}^T \vect{x} + z^2 \vect{w}^T \vect{w}  ] \\
+ & = E[ \vect{x}^T \vect{x} - 2 \vect{x}^T \vect{w}  \vect{w}^T \vect{x} + \vect{x}^T \vect{w} \vect{x}^T \vect{w} \vect{w}^T \vect{w}  ] \\
+ &  = \sum_j \mathrm{var}(x_j) + E[  - 2 \vect{x}^T \vect{w}  \vect{w}^T \vect{x} + \vect{w}^T \vect{x} \vect{x}^T \vect{w} \vect{w}^T \vect{w}  ]\\
+ & = \sum_j \mathrm{var}(x_j)  + (\sum_j w_j^2 )  E[  \vect{w}^T \vect{x} \vect{x}^T \vect{w}] -  2  E[ \vect{x}^T \vect{w}  \vect{w}^T \vect{x}] \\
+ & = \sum_j \mathrm{var}(x_j)  + (\sum_j w_j^2 )    \vect{w}^T E[\vect{x} \vect{x}^T] \vect{w} -  2  \vect{w}^T E[ \vect{x}  \vect{x}^T ]\vect{w} \\
+ & = \sum_j \mathrm{var}(x_j) + (\sum_j w_j^2 ) \sum_{i,i'} w_i w_{i'} \mathrm{cov}(x_i,x_{i'}) - 2 \sum_{i,i'} w_i w_{i'} \mathrm{cov}(x_i,x_{i'})
+\end{align}
+
+$E[ \vect{x}^T \vect{x}] = \sum_j \mathrm{var}(x_j) $ because we assume mean of every component of $\vect{x}$ is zero.
+
+With $\sum_j w_j^2 = 1$, we have
+
+\begin{align}
+J( \vect{w}  ) & = \sum_j \mathrm{var}(x_j) + (\sum_j w_j^2 ) \sum_{i,i'} w_i w_{i'} \mathrm{cov}(x_i,x_{i'}) - 2 \sum_{i,i'} w_i w_{i'} \mathrm{cov}(x_i,x_{i'})  \\
+   & = \sum_j \mathrm{var}(x_j) - \sum_{i,i'} w_i w_{i'} \mathrm{cov}(x_i,x_{i'}) \\
+   & = \sum_j \mathrm{var}(x_j) - \vect{w}^T C \vect{w}.
+\end{align}
+
+After this, we can go on following steps in chapter 12 of PRML (12.1.1, maximum variance formulation). Note that $\sum_j \mathrm{var}(x_j)$ is constant in this case, and $\min J( \vect{w}  )$ is $\max \vect{w}^T C \vect{w}$.
+
+
+% section 5_11_5 (end)
+
+
+
+
+% section mathematical_exercises (end)
+
+\end{document}  
